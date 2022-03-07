@@ -22,6 +22,7 @@ function App() {
         let mergeCityDatas: CityData;
         mergeCityDatas = Object.assign(data.list[0].wind, data.list[0].main);
         setCityData(mergeCityDatas);
+        console.log(mergeCityDatas);
         setShowDataCity(true);
       })
       .catch((err) => {
@@ -30,13 +31,13 @@ function App() {
       });
   }
 
-  function transformCityData(data?: Number, specialChar?: String) {
+  function transformCityData(
+    data?: Number,
+    specialChar?: String,
+    numberFixed?: number
+  ) {
     let transformedData: String;
-    if (specialChar !== undefined) {
-      transformedData = Number(data).toFixed() + specialChar;
-    } else {
-      transformedData = Number(data).toFixed();
-    }
+    transformedData = Number(data).toFixed(numberFixed) + specialChar;
 
     return transformedData;
   }
@@ -57,7 +58,7 @@ function App() {
           <li>pressure: {transformCityData(cityData?.pressure, " hPa")}</li>
           <li>temp_max: {transformCityData(cityData?.temp_max, "°C")}</li>
           <li>temp_min: {transformCityData(cityData?.temp_min, "°C")}</li>
-          <li>wind_speed: {transformCityData(cityData?.speed, " m/s")}</li>
+          <li>wind_speed: {transformCityData(cityData?.speed, " m/s", 1)}</li>
         </ul>
       )}
     </div>
