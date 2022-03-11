@@ -24,6 +24,7 @@ function App() {
   const [cityData, setCityData] = useState<CityData>();
   const [city, setCity] = useState<String>("");
   const [showDataCity, setShowDataCity] = useState<Boolean>(false);
+  
 
   function getWeather() {
     getDataCity(city)
