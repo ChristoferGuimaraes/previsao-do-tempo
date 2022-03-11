@@ -1,7 +1,8 @@
 import { useState } from "react";
 import getDataCity from "../services/api/CurrentWeather";
-import getForecastDataCity from "../services/api/ForecastWeather";
+import "./App.css";
 import * as moment from "moment";
+import Forecast from "../components/Forecast";
 
 interface CityData {
   dt: String;
@@ -23,7 +24,6 @@ function App() {
   const [cityData, setCityData] = useState<CityData>();
   const [city, setCity] = useState<String>("");
   const [showDataCity, setShowDataCity] = useState<Boolean>(false);
-  const [forecastWeathers, setForecastWeathers] = useState<CityData[]>();
 
   function getWeather() {
     getDataCity(city)
@@ -39,8 +39,6 @@ function App() {
         setCityData(mergeCityDatas);
         console.log(data);
         setShowDataCity(true);
-        getForecast();
-        console.log(forecastWeathers);
       })
       .catch((err) => {
         console.log(err);
@@ -59,27 +57,17 @@ function App() {
     return transformedData;
   }
 
-  function getForecast() {
-    let mergeCityDatas: CityData[] = [];
-    getForecastDataCity(city).then(({ data }) => {
-      mergeCityDatas.push(
-        data.list[2],
-        data.list[10],
-        data.list[18],
-        data.list[26],
-        data.list[34]
-      );
-      setForecastWeathers(mergeCityDatas);
-    });
-  }
-
   function getCurrentDate() {
-    const formatedDate = moment().format("ll");
+    const formatedDate = moment().format("LL");
     return formatedDate;
   }
 
+  function upperCaseFirstLetter(word: any) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
   return (
-    <div className="App">
+    <div className="main-container">
       <input
         type="text"
         placeholder="City name.."
@@ -88,43 +76,52 @@ function App() {
       <button onClick={() => getWeather()}>Buscar</button>
       {showDataCity && (
         <>
-          <ul className="city-data-container">
-            <li>
-              {cityData?.name}, {cityData?.country}
-              <div>{getCurrentDate()}</div>
-            </li>
-            <li>temp: {transformCityData(cityData?.temp, "°C")}</li>
-            <img
-              src={`http://openweathermap.org/img/wn/${cityData?.icon}@2x.png`}
-              alt=""
-            />
-            <li>{cityData?.description}</li>
+          <div className="city-data-container">
+            <div className="main-info-container">
+              <div className="left-content">
+                <span className="city-name">
+                  {cityData?.name}, {cityData?.country}
+                </span>
+                <div className="city-current-date">{getCurrentDate()}</div>
+                <img
+                  style={{ width: "100px" }}
+                  src={`http://openweathermap.org/img/wn/${cityData?.icon}@2x.png`}
+                  alt=""
+                />
+                <span>{upperCaseFirstLetter(cityData?.description)}</span>
+              </div>
 
-            <li>feels_like: {transformCityData(cityData?.feels_like, "°C")}</li>
-            <li>humidity: {transformCityData(cityData?.humidity, "%")}</li>
-            <li>pressure: {transformCityData(cityData?.pressure, " hPa")}</li>
-            <li>temp_max: {transformCityData(cityData?.temp_max, "°C")}</li>
-            <li>temp_min: {transformCityData(cityData?.temp_min, "°C")}</li>
-            <li>wind_speed: {transformCityData(cityData?.speed, " m/s", 1)}</li>
-          </ul>
+              <div className="right-content">
+                <div className="today-temp-container">
+                <span className="current-temp">
+                  {transformCityData(cityData?.temp, "°C")}
+                </span>
+                <div className="min-max-temp">
+                  <span>
+                    {`${transformCityData(
+                      cityData?.temp_max,
+                      "°C"
+                    )} / ${transformCityData(cityData?.temp_min, "°C")}`}
+                  </span>
+                </div>
+              </div>
+              </div>
+            
+            </div>
+            {/* <span>
+              feels_like: {transformCityData(cityData?.feels_like, "°C")}
+            </span>
+            <span>humidity: {transformCityData(cityData?.humidity, "%")}</span>
+            <span>
+              pressure: {transformCityData(cityData?.pressure, " hPa")}
+            </span>
 
-          <div>
-            {forecastWeathers?.map((weather: any) => (
-              <ul key={weather.dt}>
-                <li>{moment(weather.dt_txt).locale("pt-br").format("dddd")}</li>
-                <li>
-                  {
-                    <img
-                      src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-                      alt=""
-                    />
-                  }
-                </li>
-                <li>{transformCityData(weather.main.temp, "°C")}</li>
-                <li>{weather.weather[0].description}</li>
-              </ul>
-            ))}
+            <span>
+              wind_speed: {transformCityData(cityData?.speed, " m/s", 1)}
+            </span> */}
           </div>
+
+          <Forecast cityName={city} cityData={cityData} />
         </>
       )}
     </div>
