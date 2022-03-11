@@ -111,7 +111,7 @@ function App() {
           <div>
             {forecastWeathers?.map((weather: any) => (
               <ul key={weather.dt}>
-                <li>{moment(weather.dt_txt).locale("pt-br").format("ll")}</li>
+                <li>{moment(weather.dt_txt).locale("pt-br").format("dddd")}</li>
                 <li>
                   {
                     <img
@@ -120,6 +120,7 @@ function App() {
                     />
                   }
                 </li>
+                <li>{transformCityData(weather.main.temp, "°C")}</li>
                 <li>{weather.weather[0].description}</li>
               </ul>
             ))}
