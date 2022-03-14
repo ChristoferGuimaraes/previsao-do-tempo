@@ -69,6 +69,10 @@ function App() {
 
   return (
     <div className="app-container">
+      <div className="title-app">
+        <h1>Weather App</h1>
+      </div>
+
       <div className="btn-input-container">
         <div className="input-search">
           <input
@@ -129,11 +133,11 @@ function App() {
               wind_speed: {transformCityData(cityData?.speed, " m/s", 1)}
             </span> */}
             </div>
-
-            <Forecast cityName={city} cityData={cityData} />
+            <div className="forecast-container-main">
+              <Forecast cityName={city} cityData={cityData} />
+            </div>
           </>
         )}
-      
       </div>
       <Backgrounds className={"bg-image"} data={cityData} />
     </div>
