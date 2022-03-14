@@ -1,8 +1,9 @@
 import { useState } from "react";
 import getDataCity from "../services/api/CurrentWeather";
-import "./App.css";
+import "../assets/styles/App.css";
 import * as moment from "moment";
 import Forecast from "../components/Forecast";
+import Backgrounds from "../components/Backgrounds";
 
 interface CityData {
   dt: String;
@@ -24,7 +25,6 @@ function App() {
   const [cityData, setCityData] = useState<CityData>();
   const [city, setCity] = useState<String>("");
   const [showDataCity, setShowDataCity] = useState<Boolean>(false);
-  
 
   function getWeather() {
     getDataCity(city)
@@ -68,48 +68,56 @@ function App() {
   }
 
   return (
-    <div className="main-container">
-      <input
-        type="text"
-        placeholder="City name.."
-        onChange={(e) => setCity(e.target.value)}
-      />
-      <button onClick={() => getWeather()}>Buscar</button>
-      {showDataCity && (
-        <>
-          <div className="city-data-container">
-            <div className="main-info-container">
-              <div className="left-content">
-                <span className="city-name">
-                  {cityData?.name}, {cityData?.country}
-                </span>
-                <div className="city-current-date">{getCurrentDate()}</div>
-                <img
-                  style={{ width: "100px" }}
-                  src={`http://openweathermap.org/img/wn/${cityData?.icon}@2x.png`}
-                  alt=""
-                />
-                <span>{upperCaseFirstLetter(cityData?.description)}</span>
-              </div>
-
-              <div className="right-content">
-                <div className="today-temp-container">
-                <span className="current-temp">
-                  {transformCityData(cityData?.temp, "°C")}
-                </span>
-                <div className="min-max-temp">
-                  <span>
-                    {`${transformCityData(
-                      cityData?.temp_max,
-                      "°C"
-                    )} / ${transformCityData(cityData?.temp_min, "°C")}`}
+    <div className="app-container">
+      <div className="btn-input-container">
+        <div className="input-search">
+          <input
+            type="text"
+            placeholder="City name"
+            onChange={(e) => setCity(e.target.value)}
+          />
+        </div>
+        <button onClick={() => getWeather()}>Buscar</button>
+      </div>
+      <div className="main-container">
+        <div className="img-holder">
+          <Backgrounds className={"bg-image-container"} data={cityData} />
+        </div>
+        {showDataCity && (
+          <>
+            <div className="city-data-container">
+              <div className="main-info-container">
+                <div className="left-content">
+                  <span className="city-name">
+                    {cityData?.name}, {cityData?.country}
                   </span>
+                  <div className="city-current-date">{getCurrentDate()}</div>
+                  <img
+                    className="weather-icon"
+                    style={{ width: "100px" }}
+                    src={`http://openweathermap.org/img/wn/${cityData?.icon}@2x.png`}
+                    alt=""
+                  />
+                  <span>{upperCaseFirstLetter(cityData?.description)}</span>
+                </div>
+
+                <div className="right-content">
+                  <div className="today-temp-container">
+                    <span className="current-temp">
+                      {transformCityData(cityData?.temp, "°C")}
+                    </span>
+                    <div className="min-max-temp">
+                      <span>
+                        {`${transformCityData(
+                          cityData?.temp_max,
+                          "°C"
+                        )} / ${transformCityData(cityData?.temp_min, "°C")}`}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              </div>
-            
-            </div>
-            {/* <span>
+              {/* <span>
               feels_like: {transformCityData(cityData?.feels_like, "°C")}
             </span>
             <span>humidity: {transformCityData(cityData?.humidity, "%")}</span>
@@ -120,11 +128,14 @@ function App() {
             <span>
               wind_speed: {transformCityData(cityData?.speed, " m/s", 1)}
             </span> */}
-          </div>
+            </div>
 
-          <Forecast cityName={city} cityData={cityData} />
-        </>
-      )}
+            <Forecast cityName={city} cityData={cityData} />
+          </>
+        )}
+      
+      </div>
+      <Backgrounds className={"bg-image"} data={cityData} />
     </div>
   );
 }
