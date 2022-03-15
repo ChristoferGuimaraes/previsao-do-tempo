@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&family=League+Spartan:wght@200;300;400&family=PT+Sans:wght@400;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +10,14 @@ span {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "League Spartan", sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  flex-direction: row;
+  display: flex;
+
 }
 
 .app-container {
@@ -20,20 +29,31 @@ body {
   flex-direction: column;
 }
 
+.title-app {
+  display: flex;
+  justify-content: center;
+  margin-top: 45px;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.432);
+}
+
 .main-container {
   max-width: 720px;
+  max-height: 450px;
   width: 100%;
   left: 50%;
   text-align: center;
   border-radius: 10px;
   margin-top: 50px;
   color: #fff;
-  text-shadow: 1px 1px 3px black;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.432);
   display: inline-block;
-  position: relative;
+  position: fixed;
   transform: translateX(-50%);
   overflow: hidden;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.452);
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.164);
+  padding: 25px 0px;
+  margin-top: 175px;
 }
 
 .bg-image-container {
@@ -43,6 +63,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   filter: blur(4px);
+  filter: brightness(90%);
   border-radius: 7px;
 }
 
@@ -75,21 +96,112 @@ body {
 .btn-input-container {
   display: inline-flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 39px;
   position: relative;
+}
+
+.input-search > input {
+  border: 1px solid transparent;
+  padding: 7px;
+  border-radius: 5px;
+  margin-right: 5px;
+  background-color: rgba(255, 255, 255, 0.26);
+  color: #fff;
+  outline: none;
+}
+
+.btn-input-container > button {
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  background-color: #fff;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .main-info-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 0px 35px;
   padding-top: 25px;
 }
 
+.main-info-container .weather-icon {
+  margin-left: -17px;
+}
+
+.current-weather-description {
+  font-size: 21px;
+  font-weight: 400;
+}
+
 .forecast-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 25px;
+  margin: 0 45px;
+}
+
+.forecast-container {
+  position: relative;
+}
+
+.daily-details-container {
+  display: flex;
+  margin-top: 30px;
+  flex-direction: column;
+}
+
+.daily-details-container::after {
+  content: " ";
+  height: 1px;
+  background: #fff;
+  display: flex;
+  margin-left: 12.5%;
+  max-width: 75%;
+  
+}
+
+.details-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 49px;
+  
+}
+
+.details-icons {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.detail-data {
+  font-size: 26px;
+  margin-top: 5px;
+}
+
+.detail-content-container {
+  padding: 6px;
+  height: 89px;
+  width: 109px;
+  font-size: 17px;
+  margin-bottom: 30px;
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.171);
+}
+
+.content {
+  border-bottom: 1px solid #fff;
+  border-bottom-width: 3px;
+  cursor: pointer;
+}
+
+.daily {
+  margin-left: 109px;
+}
+
+.details {
+  margin-left: 30px;
 }
 
 .left-content {
@@ -100,11 +212,13 @@ body {
 }
 
 .city-name {
-  font-size: 28px;
+  font-size: 36px;
 }
 
 .city-current-date {
-  font-size: 17px;
+  margin-top: 5px;
+  font-size: 22px;
+  font-weight: 300;
 }
 
 .right-content {
@@ -114,13 +228,15 @@ body {
 }
 
 .current-temp {
-  font-size: 60px;
+  font-size: 80px;
+  font-weight: 200;
 }
 
 .min-max-temp {
-  font-size: 25px;
+  font-size: 30px;
 }
 
 .weather-icon {
-  text-shadow: 2px 2px 2px black;
+  -webkit-filter: drop-shadow(1px 1px 2px rgba(34, 34, 34, 0.6));
+  filter: drop-shadow(1px 1px 2px rgba(34, 34, 34, 0.6));
 }

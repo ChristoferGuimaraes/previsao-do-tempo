@@ -50,6 +50,8 @@ export default function Forecast({ cityName, cityData }: any) {
           <span>
             {
               <img
+                style={{ width: "90px" }}
+                className="weather-icon"
                 src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                 alt=""
               />

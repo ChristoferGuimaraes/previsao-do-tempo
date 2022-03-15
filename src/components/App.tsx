@@ -4,6 +4,8 @@ import "../assets/styles/App.css";
 import * as moment from "moment";
 import Forecast from "../components/Forecast";
 import Backgrounds from "../components/Backgrounds";
+import { FaTemperatureLow, FaWind, FaArrowCircleDown } from "react-icons/fa";
+import { ImDroplet } from "react-icons/im";
 
 interface CityData {
   dt: String;
@@ -25,6 +27,8 @@ function App() {
   const [cityData, setCityData] = useState<CityData>();
   const [city, setCity] = useState<String>("");
   const [showDataCity, setShowDataCity] = useState<Boolean>(false);
+  const [dailyContent, setDailyContent] = useState<Boolean>(true);
+  const [detailsContent, setDetailsContent] = useState<Boolean>(false);
 
   function getWeather() {
     getDataCity(city)
@@ -67,8 +71,24 @@ function App() {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
 
+  function styleDailySelected() {
+    if (!dailyContent) {
+      return { borderBottom: "1px solid transparent" };
+    }
+  }
+
+  function styleDetailsSelected() {
+    if (!detailsContent) {
+      return { borderBottom: "1px solid transparent" };
+    }
+  }
+
   return (
     <div className="app-container">
+      <div className="title-app">
+        <h1>Weather App</h1>
+      </div>
+
       <div className="btn-input-container">
         <div className="input-search">
           <input
@@ -98,7 +118,9 @@ function App() {
                     src={`http://openweathermap.org/img/wn/${cityData?.icon}@2x.png`}
                     alt=""
                   />
-                  <span>{upperCaseFirstLetter(cityData?.description)}</span>
+                  <span className="current-weather-description">
+                    {upperCaseFirstLetter(cityData?.description)}
+                  </span>
                 </div>
 
                 <div className="right-content">
@@ -117,23 +139,82 @@ function App() {
                   </div>
                 </div>
               </div>
-              {/* <span>
-              feels_like: {transformCityData(cityData?.feels_like, "°C")}
-            </span>
-            <span>humidity: {transformCityData(cityData?.humidity, "%")}</span>
-            <span>
-              pressure: {transformCityData(cityData?.pressure, " hPa")}
-            </span>
-
-            <span>
-              wind_speed: {transformCityData(cityData?.speed, " m/s", 1)}
-            </span> */}
             </div>
 
-            <Forecast cityName={city} cityData={cityData} />
+            <div className="footer-content">
+              <div className="daily-details-container">
+                <ul>
+                  <li
+                    className="content daily"
+                    style={styleDailySelected()}
+                    onClick={() => {
+                      setDailyContent(true);
+                      setDetailsContent(false);
+                    }}
+                  >
+                    Daily
+                  </li>
+                  <li
+                    className="content details"
+                    style={styleDetailsSelected()}
+                    onClick={() => {
+                      setDetailsContent(true);
+                      setDailyContent(false);
+                    }}
+                  >
+                    Details
+                  </li>
+                </ul>
+              </div>
+
+              {dailyContent ? (
+                <div className="forecast-container-main">
+                  <Forecast cityName={city} cityData={cityData} />
+                </div>
+              ) : (
+                <div className="details-container">
+                  
+                    <div className="detail-content-container">
+                      <span className="details-icons">
+                        <FaTemperatureLow /> <span>Feels Like</span>
+                      </span>
+                      <span className="detail-data">
+                        {transformCityData(cityData?.feels_like, "°C")}
+                      </span>
+                    </div>
+                    <div className="detail-content-container">
+                      <span className="details-icons">
+                        <ImDroplet /> <span>Humidity</span>{" "}
+                      </span>
+                      <span className="detail-data">
+                        {transformCityData(cityData?.humidity, "%")}
+                      </span>
+                    </div>
+                 
+                 
+                    <div className="detail-content-container">
+                      <span className="details-icons">
+                        <FaArrowCircleDown /> <span>Pressure</span>{" "}
+                      </span>
+                      <span className="detail-data">
+                        {transformCityData(cityData?.pressure, " hPa")}
+                      </span>
+                    </div>
+                    <div className="detail-content-container">
+                      <span className="details-icons">
+                        <FaWind /> <span>WindSpeed</span>{" "}
+                      </span>
+                      <span className="detail-data">
+                        {" "}
+                        {transformCityData(cityData?.speed, " m/s", 1)}{" "}
+                      </span>
+                    </div>
+                  
+                </div>
+              )}
+            </div>
           </>
         )}
-      
       </div>
       <Backgrounds className={"bg-image"} data={cityData} />
     </div>
