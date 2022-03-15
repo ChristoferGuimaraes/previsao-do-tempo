@@ -13,6 +13,13 @@ body {
   font-family: "League Spartan", sans-serif;
 }
 
+ul {
+  list-style-type: none;
+  flex-direction: row;
+  display: flex;
+
+}
+
 .app-container {
   width: 100%;
   height: 100%;
@@ -25,13 +32,14 @@ body {
 .title-app {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 45px;
   color: #fff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.432);
 }
 
 .main-container {
   max-width: 720px;
+  max-height: 450px;
   width: 100%;
   left: 50%;
   text-align: center;
@@ -40,11 +48,12 @@ body {
   color: #fff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.432);
   display: inline-block;
-  position: relative;
+  position: fixed;
   transform: translateX(-50%);
   overflow: hidden;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.089);
-  padding: 10px 0px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.164);
+  padding: 25px 0px;
+  margin-top: 175px;
 }
 
 .bg-image-container {
@@ -54,6 +63,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   filter: blur(4px);
+  filter: brightness(90%);
   border-radius: 7px;
 }
 
@@ -111,29 +121,87 @@ body {
 
 .main-info-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 0px 35px;
   padding-top: 25px;
 }
 
-.forecast-container {
-  display: flex;
-  justify-content: center;
-  padding: 25px;
+.main-info-container .weather-icon {
+  margin-left: -17px;
 }
 
-.forecast-container-main::before {
+.current-weather-description {
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.forecast-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 25px;
+  margin: 0 45px;
+}
+
+.forecast-container {
+  position: relative;
+}
+
+.daily-details-container {
+  display: flex;
+  margin-top: 30px;
+  flex-direction: column;
+}
+
+.daily-details-container::after {
   content: " ";
-  display: inline-block;
-  width: 85%;
-  justify-content: center;
   height: 1px;
-  margin-top: 15px;
-  margin-bottom: 25px;
-  
   background: #fff;
-  margin-top: 39px;
-  margin-bottom: -10px;
+  display: flex;
+  margin-left: 12.5%;
+  max-width: 75%;
+  
+}
+
+.details-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 49px;
+  
+}
+
+.details-icons {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.detail-data {
+  font-size: 26px;
+  margin-top: 5px;
+}
+
+.detail-content-container {
+  padding: 6px;
+  height: 89px;
+  width: 109px;
+  font-size: 17px;
+  margin-bottom: 30px;
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.171);
+}
+
+.content {
+  border-bottom: 1px solid #fff;
+  border-bottom-width: 3px;
+  cursor: pointer;
+}
+
+.daily {
+  margin-left: 109px;
+}
+
+.details {
+  margin-left: 30px;
 }
 
 .left-content {
@@ -160,7 +228,7 @@ body {
 }
 
 .current-temp {
-  font-size: 76px;
+  font-size: 80px;
   font-weight: 200;
 }
 
