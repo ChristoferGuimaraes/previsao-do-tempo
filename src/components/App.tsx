@@ -29,6 +29,7 @@ function App() {
   const [showDataCity, setShowDataCity] = useState<Boolean>(false);
   const [dailyContent, setDailyContent] = useState<Boolean>(true);
   const [detailsContent, setDetailsContent] = useState<Boolean>(false);
+  const [message, setMessage] = useState<String>("Please, enter a city name!");
 
   function getWeather() {
     getDataCity(city)
@@ -42,12 +43,12 @@ function App() {
         );
         mergeCityDatas["name"] = data.list[0].name;
         setCityData(mergeCityDatas);
-        console.log(data);
         setShowDataCity(true);
       })
       .catch((err) => {
         console.log(err);
         setShowDataCity(false);
+        setMessage("This city does not exist!");
       });
   }
 
@@ -85,25 +86,27 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className="title-app">
-        <h1>Weather App</h1>
+      <div className="title-input-btn-container">
+        <div className="title-app">
+          <h1>Weather App</h1>
+        </div>
+        <div className="btn-input-container">
+          <div className="input-search">
+            <input
+              type="text"
+              placeholder="Search"
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </div>
+          <button onClick={() => getWeather()}>Buscar</button>
+        </div>
       </div>
 
-      <div className="btn-input-container">
-        <div className="input-search">
-          <input
-            type="text"
-            placeholder="City name"
-            onChange={(e) => setCity(e.target.value)}
-          />
-        </div>
-        <button onClick={() => getWeather()}>Buscar</button>
-      </div>
       <div className="main-container">
         <div className="img-holder">
           <Backgrounds className={"bg-image-container"} data={cityData} />
         </div>
-        {showDataCity && (
+        {showDataCity ? (
           <>
             <div className="city-data-container">
               <div className="main-info-container">
@@ -166,56 +169,63 @@ function App() {
                   </li>
                 </ul>
               </div>
-
-              {dailyContent ? (
+              {dailyContent && (
                 <div className="forecast-container-main">
                   <Forecast cityName={city} cityData={cityData} />
                 </div>
-              ) : (
+              )}
+
+              {detailsContent && (
                 <div className="details-container">
-                  
-                    <div className="detail-content-container">
-                      <span className="details-icons">
-                        <FaTemperatureLow /> <span>Feels Like</span>
-                      </span>
-                      <span className="detail-data">
-                        {transformCityData(cityData?.feels_like, "°C")}
-                      </span>
-                    </div>
-                    <div className="detail-content-container">
-                      <span className="details-icons">
-                        <ImDroplet /> <span>Humidity</span>{" "}
-                      </span>
-                      <span className="detail-data">
-                        {transformCityData(cityData?.humidity, "%")}
-                      </span>
-                    </div>
-                 
-                 
-                    <div className="detail-content-container">
-                      <span className="details-icons">
-                        <FaArrowCircleDown /> <span>Pressure</span>{" "}
-                      </span>
-                      <span className="detail-data">
-                        {transformCityData(cityData?.pressure, " hPa")}
-                      </span>
-                    </div>
-                    <div className="detail-content-container">
-                      <span className="details-icons">
-                        <FaWind /> <span>WindSpeed</span>{" "}
-                      </span>
-                      <span className="detail-data">
-                        {" "}
-                        {transformCityData(cityData?.speed, " m/s", 1)}{" "}
-                      </span>
-                    </div>
-                  
+                  <div className="detail-content-container">
+                    <span className="details-icons">
+                      <FaTemperatureLow /> <span>Feels Like</span>
+                    </span>
+                    <span className="detail-data">
+                      {transformCityData(cityData?.feels_like, "°C")}
+                    </span>
+                  </div>
+                  <div className="detail-content-container">
+                    <span className="details-icons">
+                      <ImDroplet /> <span>Humidity</span>{" "}
+                    </span>
+                    <span className="detail-data">
+                      {transformCityData(cityData?.humidity, "%")}
+                    </span>
+                  </div>
+
+                  <div className="detail-content-container">
+                    <span className="details-icons">
+                      <FaArrowCircleDown /> <span>Pressure</span>{" "}
+                    </span>
+                    <span className="detail-data">
+                      {transformCityData(cityData?.pressure, " hPa")}
+                    </span>
+                  </div>
+                  <div className="detail-content-container">
+                    <span className="details-icons">
+                      <FaWind /> <span>WindSpeed</span>{" "}
+                    </span>
+                    <span className="detail-data">
+                      {" "}
+                      {transformCityData(cityData?.speed, " m/s", 1)}{" "}
+                    </span>
+                  </div>
                 </div>
               )}
             </div>
           </>
+        ) : (
+          <div>
+            <h1 className="initial-and-error-msg">{message}</h1>
+          </div>
         )}
       </div>
+      <footer style={{ fontSize: "13px'" }}>
+        <a href="https://github.com/ChristoferGuimaraes" target="_blank">
+          &copy; github.com/ChristoferGuimaraes
+        </a>
+      </footer>
       <Backgrounds className={"bg-image"} data={cityData} />
     </div>
   );

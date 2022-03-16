@@ -1,6 +1,6 @@
 import BackgroundImages from "../../assets/img/background-weather";
 
-export default function Backgrounds({data, className}: any) {
+export default function Backgrounds({ data, className }: any) {
   function getBackgroundWeather(): string {
     //clear sky
     if (data?.icon === "01d") {
