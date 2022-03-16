@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import getForecastDataCity from "../../services/api/ForecastWeather";
 import * as moment from "moment";
+import Loading from "../Loading";
 
 interface CityData {
   icon: String;
@@ -43,24 +44,38 @@ export default function Forecast({ cityName, cityData }: any) {
   }
 
   return (
-    <div className="forecast-container">
-      {forecastWeathers?.map((weather: any) => (
-        <div key={weather.dt}>
-          <span>{moment(weather.dt_txt).format("dddd")}</span>
-          <span>
-            {
-              <img
-                style={{ width: "90px" }}
-                className="weather-icon"
-                src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-                alt=""
-              />
-            }
-          </span>
-          <span>{transformCityData(weather.main.temp, "°C")}</span>
-          <span>{upperCaseFirstLetter(weather.weather[0].description)}</span>
+    <>
+      {forecastWeathers ? (
+        <div className="forecast-container">
+          {forecastWeathers?.map((weather: any) => (
+            <div key={weather.dt}>
+              <span style={{ fontSize: "17px" }}>
+                {moment(weather.dt_txt).format("dddd")}
+              </span>
+              <span>
+                {
+                  <img
+                    style={{ width: "90px" }}
+                    className="weather-icon"
+                    src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                    alt=""
+                  />
+                }
+              </span>
+              <span className="forecast-temp">
+                {transformCityData(weather.main.temp, "°C")}
+              </span>
+              <span>
+                {upperCaseFirstLetter(weather.weather[0].description)}
+              </span>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      ) : (
+        <div>
+          <Loading />
+        </div>
+      )}
+    </>
   );
 }
