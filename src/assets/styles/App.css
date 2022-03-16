@@ -43,7 +43,6 @@ footer {
   overflow: hidden;
   position: absolute;
   flex-direction: column;
-  
 }
 
 .title-input-btn-container {
@@ -87,9 +86,9 @@ footer {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  filter: brightness(90%);
+  filter: brightness("9" 0%);
   border-radius: 7px;
-  filter: blur(4px);
+  filter: blur(5.5px);
 }
 
 .img-holder {
@@ -173,10 +172,6 @@ footer {
   margin: 0 45px;
 }
 
-.forecast-container {
-  position: relative;
-}
-
 .forecast-temp {
   font-size: 21px;
 }
@@ -204,7 +199,7 @@ footer {
 }
 
 .details-icons {
-  margin-top: 8px;
+  margin-top: 9px;
   font-size: 20px;
   font-weight: 200;
 }
@@ -281,4 +276,83 @@ footer {
 
 .initial-and-error-msg {
   margin-top: 209px;
+}
+
+@media (max-width: 720px) {
+  footer {
+    margin-top: 696px;
+    z-index: 3;
+  }
+
+  .main-container {
+    height: 580px;
+    width: 320px;
+    overflow-y: scroll;
+  }
+
+  .title-input-btn-container {
+    display: block;
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .title-app {
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  .forecast-container {
+    flex-direction: column;
+  }
+
+  .city-name {
+    font-size: 30px;
+  }
+
+  .city-current-date {
+    font-size: 19px;
+  }
+
+  .min-max-temp {
+    font-size: 21px;
+  }
+
+  .current-temp {
+    font-size: 70px;
+  }
+
+  .bg-image-container {
+    height: 150%;
+    filter: blur(8px);
+  }
+
+  .detail-content-container {
+    padding: 30px;
+  }
+
+  .details-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 68px;
+  }
+
+  .details-icons {
+    font-size: 29px;
+    margin-top: 0px;
+  }
+
+  .detail-data {
+    font-size: 29px;
+  }
+
+  .details {
+    font-size: 18px;
+  }
+  
+  .daily {
+    font-size: 18px;
+    margin-left: 93px;
+  }
+
 }

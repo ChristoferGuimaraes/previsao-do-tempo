@@ -29,7 +29,7 @@ function App() {
   const [showDataCity, setShowDataCity] = useState<Boolean>(false);
   const [dailyContent, setDailyContent] = useState<Boolean>(true);
   const [detailsContent, setDetailsContent] = useState<Boolean>(false);
-  const [message, setMessage] = useState<String>("Please, enter a city name!");
+  const [message, setMessage] = useState<String>("Enter a city name");
 
   function getWeather() {
     getDataCity(city)
@@ -169,11 +169,7 @@ function App() {
                   </li>
                 </ul>
               </div>
-              {dailyContent && (
-                <div className="forecast-container-main">
-                  <Forecast cityName={city} cityData={cityData} />
-                </div>
-              )}
+              {dailyContent && <Forecast cityName={city} cityData={cityData} />}
 
               {detailsContent && (
                 <div className="details-container">
