@@ -11,6 +11,7 @@ span {
 
 body {
   font-family: "League Spartan", sans-serif;
+  background-color: rgba(0, 0, 0, 0.568);
 }
 
 a:link,
@@ -42,6 +43,7 @@ footer {
   overflow: hidden;
   position: absolute;
   flex-direction: column;
+  
 }
 
 .title-input-btn-container {
@@ -76,6 +78,7 @@ footer {
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.164);
   padding: 25px 0px;
   margin-top: 175px;
+  background-color: rgba(0, 0, 0, 0.568);
 }
 
 .bg-image-container {

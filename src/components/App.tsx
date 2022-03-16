@@ -94,11 +94,11 @@ function App() {
           <div className="input-search">
             <input
               type="text"
-              placeholder="Search"
+              placeholder="City name"
               onChange={(e) => setCity(e.target.value)}
             />
           </div>
-          <button onClick={() => getWeather()}>Buscar</button>
+          <button onClick={() => getWeather()}>Search</button>
         </div>
       </div>
 
