@@ -165,6 +165,10 @@ footer {
   font-weight: 400;
 }
 
+.min-max-temp {
+  font-weight: 100;
+}
+
 .forecast-container {
   display: flex;
   justify-content: space-evenly;
@@ -172,8 +176,17 @@ footer {
   margin: 0 45px;
 }
 
+.forecast-container > .forecast-content > .week-day {
+  font-size: 18px;
+}
+
 .forecast-temp {
   font-size: 21px;
+}
+
+.forecast-description {
+  font-weight: 100;
+  margin-top: 2px;
 }
 
 .daily-details-container {
@@ -268,6 +281,7 @@ footer {
 .weather-icon {
   -webkit-filter: drop-shadow(1px 1px 2px rgba(34, 34, 34, 0.6));
   filter: drop-shadow(1px 1px 2px rgba(34, 34, 34, 0.6));
+  width: 89px;
 }
 
 .loading-container {
@@ -287,7 +301,15 @@ footer {
   .main-container {
     height: 580px;
     width: 320px;
+  }
+
+  .current-weather-description {
+    font-weight: 100;
+  }
+
+  .scroll-container {
     overflow-y: scroll;
+    max-height: 100%;
   }
 
   .title-input-btn-container {
@@ -302,8 +324,49 @@ footer {
     font-size: 20px;
   }
 
+  .city-data-container {
+    margin-bottom: 50px;
+  }
+
   .forecast-container {
     flex-direction: column;
+  }
+
+  .forecast-content {
+    margin-bottom: 33px;
+    background: rgba(0, 0, 0, 0.171);
+    padding: 13px;
+    border-radius: 9px;
+  }
+
+  .forecast-content:first-child {
+    margin-top: 26px;
+  }
+
+  .forecast-content:last-child {
+    margin-bottom: 10px;
+  }
+
+  .forecast-container > .forecast-content > .week-day {
+    font-size: 23px;
+    margin-bottom: -13px;
+  }
+
+  .forecast-temp {
+    font-size: 25px;
+  }
+
+  .forecast-temp-description {
+    margin-top: -10px;
+    font-size: 21px;
+  }
+
+  .forecast-description {
+    font-weight: 200;
+  }
+
+  .weather-icon {
+    width: 100px;
   }
 
   .city-name {
@@ -323,7 +386,7 @@ footer {
   }
 
   .bg-image-container {
-    height: 150%;
+    height: 180%;
     filter: blur(8px);
   }
 
@@ -334,25 +397,46 @@ footer {
   .details-container {
     display: flex;
     flex-direction: column;
-    margin-left: 68px;
+    margin-left: 76px;
   }
 
   .details-icons {
-    font-size: 29px;
-    margin-top: 0px;
+    font-size: 23px;
+    margin-top: 6px;
   }
 
   .detail-data {
-    font-size: 29px;
+    font-size: 28px;
   }
 
   .details {
     font-size: 18px;
   }
-  
+
   .daily {
     font-size: 18px;
-    margin-left: 93px;
+    margin-left: 97px;
   }
+}
 
+/*scrollbar*/
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 11px;
+  max-height: 100%;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px 10px transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 111px;
+  background: transparent;
+  box-shadow: inset 0 0 10px 10px #707070;
+  border: solid 4px transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff07;
 }
