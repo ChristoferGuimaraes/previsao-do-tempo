@@ -29,7 +29,7 @@ function App() {
   const [showDataCity, setShowDataCity] = useState<Boolean>(false);
   const [dailyContent, setDailyContent] = useState<Boolean>(true);
   const [detailsContent, setDetailsContent] = useState<Boolean>(false);
-  const [message, setMessage] = useState<String>("Please, enter a city name!");
+  const [message, setMessage] = useState<String>("Enter a city name");
 
   function getWeather() {
     getDataCity(city)
@@ -169,50 +169,49 @@ function App() {
                   </li>
                 </ul>
               </div>
-              {dailyContent && (
-                <div className="forecast-container-main">
+              <div className="scroll-container">
+                {dailyContent && (
                   <Forecast cityName={city} cityData={cityData} />
-                </div>
-              )}
+                )}
 
-              {detailsContent && (
-                <div className="details-container">
-                  <div className="detail-content-container">
-                    <span className="details-icons">
-                      <FaTemperatureLow /> <span>Feels Like</span>
-                    </span>
-                    <span className="detail-data">
-                      {transformCityData(cityData?.feels_like, "°C")}
-                    </span>
-                  </div>
-                  <div className="detail-content-container">
-                    <span className="details-icons">
-                      <ImDroplet /> <span>Humidity</span>{" "}
-                    </span>
-                    <span className="detail-data">
-                      {transformCityData(cityData?.humidity, "%")}
-                    </span>
-                  </div>
+                {detailsContent && (
+                  <div className="details-container">
+                    <div className="detail-content-container">
+                      <span className="details-icons">
+                        <FaTemperatureLow /> <span>Feels Like</span>
+                      </span>
+                      <span className="detail-data">
+                        {transformCityData(cityData?.feels_like, "°C")}
+                      </span>
+                    </div>
+                    <div className="detail-content-container">
+                      <span className="details-icons">
+                        <ImDroplet /> <span>Humidity</span>
+                      </span>
+                      <span className="detail-data">
+                        {transformCityData(cityData?.humidity, "%")}
+                      </span>
+                    </div>
 
-                  <div className="detail-content-container">
-                    <span className="details-icons">
-                      <FaArrowCircleDown /> <span>Pressure</span>{" "}
-                    </span>
-                    <span className="detail-data">
-                      {transformCityData(cityData?.pressure, " hPa")}
-                    </span>
+                    <div className="detail-content-container">
+                      <span className="details-icons">
+                        <FaArrowCircleDown /> <span>Pressure</span>
+                      </span>
+                      <span className="detail-data">
+                        {transformCityData(cityData?.pressure, " hPa")}
+                      </span>
+                    </div>
+                    <div className="detail-content-container last-container">
+                      <span className="details-icons">
+                        <FaWind /> <span>Wind</span>
+                      </span>
+                      <span className="detail-data">
+                        {transformCityData(cityData?.speed, " m/s", 1)}
+                      </span>
+                    </div>
                   </div>
-                  <div className="detail-content-container">
-                    <span className="details-icons">
-                      <FaWind /> <span>WindSpeed</span>{" "}
-                    </span>
-                    <span className="detail-data">
-                      {" "}
-                      {transformCityData(cityData?.speed, " m/s", 1)}{" "}
-                    </span>
-                  </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </>
         ) : (

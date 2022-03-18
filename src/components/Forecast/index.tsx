@@ -48,26 +48,27 @@ export default function Forecast({ cityName, cityData }: any) {
       {forecastWeathers ? (
         <div className="forecast-container">
           {forecastWeathers?.map((weather: any) => (
-            <div key={weather.dt}>
-              <span style={{ fontSize: "17px" }}>
+            <div key={weather.dt} className="forecast-content">
+              <span className="week-day">
                 {moment(weather.dt_txt).format("dddd")}
               </span>
               <span>
                 {
                   <img
-                    style={{ width: "90px" }}
                     className="weather-icon"
                     src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                     alt=""
                   />
                 }
               </span>
-              <span className="forecast-temp">
-                {transformCityData(weather.main.temp, "°C")}
-              </span>
-              <span>
-                {upperCaseFirstLetter(weather.weather[0].description)}
-              </span>
+              <div className="forecast-temp-description">
+                <span className="forecast-temp">
+                  {transformCityData(weather.main.temp, "°C")}
+                </span>
+                <span className="forecast-description">
+                  {upperCaseFirstLetter(weather.weather[0].description)}
+                </span>
+              </div>
             </div>
           ))}
         </div>
