@@ -1,7 +1,7 @@
 import { useState } from "react";
 import getDataCity from "../services/api/CurrentWeather";
 import "../assets/styles/App.css";
-import * as moment from "moment";
+import moment from "moment";
 import Forecast from "../components/Forecast";
 import Backgrounds from "../components/Backgrounds";
 import { FaTemperatureLow, FaWind, FaArrowCircleDown } from "react-icons/fa";
@@ -30,6 +30,7 @@ function App() {
   const [dailyContent, setDailyContent] = useState<Boolean>(true);
   const [detailsContent, setDetailsContent] = useState<Boolean>(false);
   const [message, setMessage] = useState<String>("Enter a city name");
+
 
   function getWeather() {
     getDataCity(city)

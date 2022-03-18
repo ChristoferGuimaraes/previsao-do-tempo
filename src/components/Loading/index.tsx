@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import ScaleLoader from "react-spinners/ScaleLoader";
+import { ScaleLoader } from "react-spinners";
 
 // Can be a string as well. Need to ensure each key-value pair ends with ;
 const override = css`
@@ -11,8 +11,15 @@ const override = css`
 
 function LoadingComponent() {
   return (
-    <div className= "loading-container">
-      <ScaleLoader color="#fff" css={override} height={35} width={4} radius={2} margin={2} />
+    <div className="loading-container">
+      <ScaleLoader
+        color="#fff"
+        css={override}
+        height={35}
+        width={4}
+        radius={2}
+        margin={2}
+      />
     </div>
   );
 }
