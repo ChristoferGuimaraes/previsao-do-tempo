@@ -215,7 +215,7 @@ function App() {
             </div>
           </>
         ) : (
-          <div>
+          <div className="initial-and-error-msg-container">
             <h1 className="initial-and-error-msg">{message}</h1>
           </div>
         )}

@@ -428,6 +428,14 @@ footer {
   .loading-container {
     margin-left: 11px;
   }
+
+  .initial-and-error-msg {
+    display: flex;
+    justify-content: center;
+    margin-top: 266px;
+    margin-left: 9px;
+    margin-right: 9px;
+  }
 }
 
 /*scrollbar*/
