@@ -84,7 +84,6 @@ function App() {
     }
   }
 
-
   return (
     <div className="app-container">
       <div className="title-input-btn-container">
@@ -104,75 +103,73 @@ function App() {
       </div>
 
       <div className="main-container">
-        <div
-          className="scroll-container"
-        >
-          <div className="img-holder">
-            <Backgrounds className={"bg-image-container"} data={cityData} />
-          </div>
-          {showDataCity ? (
-            <>
-              <div className="city-data-container">
-                <div className="main-info-container">
-                  <div className="left-content">
-                    <span className="city-name">
-                      {cityData?.name}, {cityData?.country}
-                    </span>
-                    <div className="city-current-date">{getCurrentDate()}</div>
-                    <img
-                      className="weather-icon"
-                      style={{ width: "100px" }}
-                      src={`http://openweathermap.org/img/wn/${cityData?.icon}@2x.png`}
-                      alt=""
-                    />
-                    <span className="current-weather-description">
-                      {upperCaseFirstLetter(cityData?.description)}
-                    </span>
-                  </div>
+        <div className="img-holder">
+          <Backgrounds className={"bg-image-container"} data={cityData} />
+        </div>
+        {showDataCity ? (
+          <>
+            <div className="city-data-container">
+              <div className="main-info-container">
+                <div className="left-content">
+                  <span className="city-name">
+                    {cityData?.name}, {cityData?.country}
+                  </span>
+                  <div className="city-current-date">{getCurrentDate()}</div>
+                  <img
+                    className="weather-icon"
+                    style={{ width: "100px" }}
+                    src={`http://openweathermap.org/img/wn/${cityData?.icon}@2x.png`}
+                    alt=""
+                  />
+                  <span className="current-weather-description">
+                    {upperCaseFirstLetter(cityData?.description)}
+                  </span>
+                </div>
 
-                  <div className="right-content">
-                    <div className="today-temp-container">
-                      <span className="current-temp">
-                        {transformCityData(cityData?.temp, "°C")}
+                <div className="right-content">
+                  <div className="today-temp-container">
+                    <span className="current-temp">
+                      {transformCityData(cityData?.temp, "°C")}
+                    </span>
+                    <div className="min-max-temp">
+                      <span>
+                        {`${transformCityData(
+                          cityData?.temp_max,
+                          "°C"
+                        )} / ${transformCityData(cityData?.temp_min, "°C")}`}
                       </span>
-                      <div className="min-max-temp">
-                        <span>
-                          {`${transformCityData(
-                            cityData?.temp_max,
-                            "°C"
-                          )} / ${transformCityData(cityData?.temp_min, "°C")}`}
-                        </span>
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div className="footer-content">
-                <div className="daily-details-container">
-                  <ul>
-                    <li
-                      className="content daily"
-                      style={styleDailySelected()}
-                      onClick={() => {
-                        setDailyContent(true);
-                        setDetailsContent(false);
-                      }}
-                    >
-                      Daily
-                    </li>
-                    <li
-                      className="content details"
-                      style={styleDetailsSelected()}
-                      onClick={() => {
-                        setDetailsContent(true);
-                        setDailyContent(false);
-                      }}
-                    >
-                      Details
-                    </li>
-                  </ul>
-                </div>
+            <div className="footer-content">
+              <div className="daily-details-container">
+                <ul>
+                  <li
+                    className="content daily"
+                    style={styleDailySelected()}
+                    onClick={() => {
+                      setDailyContent(true);
+                      setDetailsContent(false);
+                    }}
+                  >
+                    Daily
+                  </li>
+                  <li
+                    className="content details"
+                    style={styleDetailsSelected()}
+                    onClick={() => {
+                      setDetailsContent(true);
+                      setDailyContent(false);
+                    }}
+                  >
+                    Details
+                  </li>
+                </ul>
+              </div>
+              <div className="scroll-container">
                 {dailyContent && (
                   <Forecast cityName={city} cityData={cityData} />
                 )}
@@ -215,13 +212,13 @@ function App() {
                   </div>
                 )}
               </div>
-            </>
-          ) : (
-            <div>
-              <h1 className="initial-and-error-msg">{message}</h1>
             </div>
-          )}
-        </div>
+          </>
+        ) : (
+          <div>
+            <h1 className="initial-and-error-msg">{message}</h1>
+          </div>
+        )}
       </div>
       <footer style={{ fontSize: "13px'" }}>
         <a href="https://github.com/ChristoferGuimaraes" target="_blank">
