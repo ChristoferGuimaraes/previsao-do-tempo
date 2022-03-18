@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import getForecastDataCity from "../../services/api/ForecastWeather";
-import * as moment from "moment";
+import moment from "moment";
 import Loading from "../Loading";
 
 interface CityData {
