@@ -16,16 +16,18 @@ export default function Forecast({ cityName, cityData }: any) {
 
   useEffect(() => {
     let mergeCityDatas: CityData[] = [];
-    getForecastDataCity(cityName).then(({ data }) => {
-      mergeCityDatas.push(
-        data.list[6],
-        data.list[14],
-        data.list[22],
-        data.list[30],
-        data.list[38]
-      );
-      setForecastWeathers(mergeCityDatas);
-    });
+    getForecastDataCity(cityName)
+      .then(({ data }) => {
+        mergeCityDatas.push(
+          data.list[6],
+          data.list[14],
+          data.list[22],
+          data.list[30],
+          data.list[38]
+        );
+        setForecastWeathers(mergeCityDatas);
+      })
+      .catch((err) => console.log(err));
   }, [cityData]);
 
   function transformCityData(
