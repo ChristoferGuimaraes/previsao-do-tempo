@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import getDataCity from "../services/api/CurrentWeather";
 import "../assets/styles/App.css";
 import moment from "moment";
@@ -25,15 +25,16 @@ interface CityData {
 
 function App() {
   const [cityData, setCityData] = useState<CityData>();
-  const [city, setCity] = useState<String>("");
+  const [handleCity, setHandleCity] = useState<string>("");
   const [showDataCity, setShowDataCity] = useState<Boolean>(false);
   const [dailyContent, setDailyContent] = useState<Boolean>(true);
   const [detailsContent, setDetailsContent] = useState<Boolean>(false);
   const [message, setMessage] = useState<String>("Enter a city name");
-
+  const [ForecastCity, setForecastCity] = useState<string>("");
 
   function getWeather() {
-    getDataCity(city)
+    setForecastCity(handleCity);
+    getDataCity(handleCity)
       .then(({ data }) => {
         let mergeCityDatas: CityData;
         mergeCityDatas = Object.assign(
@@ -85,6 +86,12 @@ function App() {
     }
   }
 
+  function handleKeyDown(e: any) {
+    if (e.key === "Enter") {
+      getWeather();
+    }
+  }
+
   return (
     <div className="app-container">
       <div className="title-input-btn-container">
@@ -94,9 +101,10 @@ function App() {
         <div className="btn-input-container">
           <div className="input-search">
             <input
+              onKeyDown={handleKeyDown}
               type="text"
               placeholder="City name"
-              onChange={(e) => setCity(e.target.value)}
+              onChange={(e) => setHandleCity(e.target.value)}
             />
           </div>
           <button onClick={() => getWeather()}>Search</button>
@@ -172,7 +180,7 @@ function App() {
               </div>
               <div className="scroll-container">
                 {dailyContent && (
-                  <Forecast cityName={city} cityData={cityData} />
+                  <Forecast cityName={ForecastCity} cityData={cityData?.name} />
                 )}
 
                 {detailsContent && (
