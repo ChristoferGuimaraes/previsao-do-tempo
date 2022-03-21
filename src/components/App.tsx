@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import getDataCity from "../services/api/CurrentWeather";
 import "../assets/styles/App.css";
 import moment from "moment";
