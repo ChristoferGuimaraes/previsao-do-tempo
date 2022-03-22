@@ -70,7 +70,7 @@ footer {
   border-radius: 10px;
   color: #fff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.479);
-  position: fixed;
+  position: absolute;
   transform: translateX(-50%);
   overflow: hidden;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.164);
@@ -304,7 +304,7 @@ footer {
   }
 
   .main-container {
-    height: 580px;
+    height: 523px;
     width: 320px;
     margin-top: 130px;
   }
@@ -317,6 +317,7 @@ footer {
     overflow-y: scroll;
     max-height: 100%;
     height: 100%;
+    
   }
 
   .title-input-btn-container {
@@ -335,6 +336,11 @@ footer {
     margin-bottom: 50px;
   }
 
+  .daily-details-container {
+    margin-top: -23px;
+  }
+  
+
   .forecast-container {
     flex-direction: column;
   }
@@ -348,11 +354,11 @@ footer {
   }
 
   .forecast-content:first-child {
-    margin-top: 26px;
+    margin-top: 13px;
   }
 
   .forecast-content:last-child {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 
   .forecast-container > .forecast-content > .week-day {
@@ -433,7 +439,7 @@ footer {
   .initial-and-error-msg {
     display: flex;
     justify-content: center;
-    margin-top: 266px;
+    margin-top: 236px;
     margin-left: 9px;
     margin-right: 9px;
   }
