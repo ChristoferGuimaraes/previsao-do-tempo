@@ -48,7 +48,7 @@ footer {
 .title-input-btn-container {
   display: flex;
   justify-content: center;
-  margin-top: 123px;
+  margin-top: 20px;
   width: 100%;
   text-align: center;
 }
@@ -68,7 +68,6 @@ footer {
   left: 50%;
   text-align: center;
   border-radius: 10px;
-  margin-top: 50px;
   color: #fff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.479);
   position: fixed;
@@ -76,7 +75,7 @@ footer {
   overflow: hidden;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.164);
   padding: 25px 0px;
-  margin-top: 175px;
+  margin-top: 73px;
   background-color: rgba(0, 0, 0, 0.568);
 }
 
@@ -115,6 +114,7 @@ footer {
   -o-filter: blur(100px);
   -ms-filter: blur(100px);
   top: -10%;
+  overflow-y: hidden;
 }
 
 .btn-input-container {
@@ -285,7 +285,7 @@ footer {
 }
 
 .loading-container {
-  margin-top: 85px;
+  margin-top: 75px;
 }
 
 .initial-and-error-msg {
@@ -299,13 +299,14 @@ footer {
 
 @media (max-width: 720px) {
   footer {
-    margin-top: 696px;
+    margin-top: 616px;
     z-index: 3;
   }
 
   .main-container {
     height: 580px;
     width: 320px;
+    margin-top: 130px;
   }
 
   .current-weather-description {
@@ -321,7 +322,7 @@ footer {
   .title-input-btn-container {
     display: block;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 23px;
   }
 
   .title-app {
